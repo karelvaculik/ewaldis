@@ -19,7 +19,14 @@ make
 - EWALDIS used for pattern extraction (this will create directory `results` with all output files):
 
 ```sh
-./ewaldis
+# by selecting specific experiment
+./ewaldis dblp1
+
+# or you can run all experiments at once:
+./ewaldis dblp1 dblp2 dblp3 dblp4 enron
+
+# or just specific experiments:
+./ewaldis enron dblp3 dblp4
 ```
 
 - Please note that the results may be a little bit different from the ones published in ECML PKDD paper due to randomness in the computation
