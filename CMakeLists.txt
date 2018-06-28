@@ -11,6 +11,5 @@ include_directories(src)
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory(src)
-#add_subdirectory(ewaldis_tests)
 
 target_link_libraries(ewaldis src libstdc++fs.a)

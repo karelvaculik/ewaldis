@@ -4,9 +4,9 @@
 #include <fstream>
 #include <string.h>
 #include <sstream>
-#include "ewaldis/DynamicGraph.h"
-#include "ewaldis/DynamicGraphExamples.h"
-#include "ewaldis/RandomGenerator.h"
+#include "src/DynamicGraph.h"
+#include "src/DynamicGraphExamples.h"
+#include "src/RandomGenerator.h"
 #include <ctime>
 
 #include <random>
