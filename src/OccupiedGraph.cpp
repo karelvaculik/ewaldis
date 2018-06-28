@@ -16,9 +16,11 @@ OccupiedGraph::~OccupiedGraph() {}
 
 
 OccupiedGraph::OccupiedGraph(std::vector<DynamicGraph> & graph_instances,
+//OccupiedGraph::OccupiedGraph(DynamicGraph * graph,
                              const std::vector<std::vector<int>> & positive_event_vertices,
                              const std::vector<std::vector<int>> & positive_event_edges,
                              const std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> & edge_pairs_dictionary_positive) :
+//        graph(graph),
         original_graph_instances(graph_instances),
         edge_pairs_dictionary_positive(edge_pairs_dictionary_positive)
 {
@@ -77,6 +79,7 @@ void OccupiedGraph::prepare_initial_edge_combination(std::map<std::pair<int, int
             int from_vertex_id = vertex_mapping_reversed.at(instance_id).at(from_vertex_set_id);
             // process all edges going from this vertex:
             std::vector<Edge *> adjacent_edges = original_graph_instances.at(instance_id).get_adjacency_list().at(from_vertex_id);
+//            std::vector<Edge *> adjacent_edges = graph->get_adjacency_list().at(from_vertex_id);
             for (Edge * adjacent_edge : adjacent_edges)
             {
                 int original_edge_id = adjacent_edge->get_original_edge_id();
@@ -242,6 +245,7 @@ void OccupiedGraph::occupy_edges(const std::vector<Edge*> & edges_to_be_occupied
             int to_vertex_id_of_added_edge = edges_to_be_occupied.at(instance_id)->get_to_vertex_id();
             // these adjacent edges will be added as new to combinations
             std::vector<Edge *> adjacent_edges = original_graph_instances.at(instance_id).get_adjacency_list().at(to_vertex_id_of_added_edge);
+//            std::vector<Edge *> adjacent_edges = graph->get_adjacency_list().at(to_vertex_id_of_added_edge);
 
             // we must also update the key pairs so that they are not (x, None) but (x, y)
             std::set<std::pair<int, int>> new_key_pairs;

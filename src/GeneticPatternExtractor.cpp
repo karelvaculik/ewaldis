@@ -27,6 +27,7 @@ GeneticPatternExtractor::GeneticPatternExtractor(int max_pattern_edges, int evol
 
 
 Pattern GeneticPatternExtractor::extract_pattern(std::vector<DynamicGraph> & graph_instances,
+//Pattern GeneticPatternExtractor::extract_pattern(DynamicGraph * graph,
                                               std::vector<std::vector<int>> & positive_event_vertices,
                                               std::vector<timestamp_t> & positive_event_times,
                                               std::vector<std::vector<int>> & positive_event_edges,
@@ -38,6 +39,7 @@ Pattern GeneticPatternExtractor::extract_pattern(std::vector<DynamicGraph> & gra
                                                  bool verbose)
 {
     OccupiedGraph occupied_graph = OccupiedGraph(graph_instances, positive_event_vertices, positive_event_edges,
+//    OccupiedGraph occupied_graph = OccupiedGraph(graph, positive_event_vertices, positive_event_edges,
                                                  suitabilities->get_edge_pairs_dictionary_positive());
 
 
@@ -53,6 +55,7 @@ Pattern GeneticPatternExtractor::extract_pattern(std::vector<DynamicGraph> & gra
 
         if (verbose) println("Looking for pattern edge no. ", pattern_edges.size()+1);
         auto pattern_edge_or_null = extract_pattern_edge(&occupied_graph, graph_instances, suitabilities, n_positive,
+//        auto pattern_edge_or_null = extract_pattern_edge(&occupied_graph, graph, suitabilities, n_positive,
                                                          n_negative, populations_fitness, negative_populations_fitness,
                                                          current_pattern_edge_index);
 
@@ -123,6 +126,7 @@ Pattern GeneticPatternExtractor::extract_pattern(std::vector<DynamicGraph> & gra
 
 
 std::optional<PatternEdge> GeneticPatternExtractor::extract_pattern_edge(OccupiedGraph *occupied_graph, std::vector<DynamicGraph> &graph_instances,
+//std::optional<PatternEdge> GeneticPatternExtractor::extract_pattern_edge(OccupiedGraph *occupied_graph, DynamicGraph * graph,
                                                                          Suitabilities *suitabilities, int n_positive, int n_negative,
                                                                          std::vector<std::vector<double>> &populations_fitness,
                                                                          std::vector<std::vector<double>> &negative_populations_fitness,
@@ -164,6 +168,7 @@ std::optional<PatternEdge> GeneticPatternExtractor::extract_pattern_edge(Occupie
                                               occupied_graph->get_edge_combinations(), population_fitness);
 
         std::vector<double> negative_fitness = occupy_best_negative_edges(graph_instances, population_positive,
+//        std::vector<double> negative_fitness = occupy_best_negative_edges(graph, population_positive,
                                                                           n_positive, n_negative, suitabilities,
                                                                           evolution_subepochs,
                                                                           negative_populations_fitness, current_pattern_edge_index, i);
@@ -466,6 +471,7 @@ void GeneticPatternExtractor::mutation_operator(std::vector<Edge *> &old_individ
 
 
 std::vector<double> GeneticPatternExtractor::occupy_best_negative_edges(std::vector<DynamicGraph> &graph_instances,
+//std::vector<double> GeneticPatternExtractor::occupy_best_negative_edges(DynamicGraph * graph,
                                                                         std::vector<std::vector<std::vector<Edge *>>> &positive_population,
                                                                         int n_positive, int n_negative, Suitabilities *suitabilities,
                                                                         int n_subepochs,
@@ -475,6 +481,7 @@ std::vector<double> GeneticPatternExtractor::occupy_best_negative_edges(std::vec
     // for each positive individual, here are possible combinations:
     std::vector<std::vector<std::vector<Edge *>>> negative_combinations = prepare_negative_combinations(
             graph_instances,
+//            graph,
             positive_population,
             suitabilities,
             n_positive,
@@ -698,6 +705,7 @@ PatternEdge GeneticPatternExtractor::select_best_individual(
 
 std::vector<std::vector<std::vector<Edge *>>> GeneticPatternExtractor::prepare_negative_combinations(
         std::vector<DynamicGraph> & original_graph_instances,
+//        DynamicGraph * graph,
         std::vector<std::vector<std::vector<Edge *>>> &positive_population,
         Suitabilities *suitabilities,
         int n_positive, int n_negative)
@@ -728,6 +736,7 @@ std::vector<std::vector<std::vector<Edge *>>> GeneticPatternExtractor::prepare_n
                         int neg_instance_id = kv.first.first;
                         int neg_edge_id = kv.first.second;
                         subcombination.at(neg_instance_id - n_positive).push_back(original_graph_instances.at(neg_instance_id).get_edges().at(neg_edge_id));
+//                        subcombination.at(neg_instance_id - n_positive).push_back(graph->get_edges().at(neg_edge_id));
                     }
                 }
             }
