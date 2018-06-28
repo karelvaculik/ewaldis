@@ -356,8 +356,6 @@ void run_process_new(std::string vertex_filename, std::string edge_filename,
                                          output_dir + "/baseline_edges_data_test.csv");
     }
 
-    return ;
-
     std::vector<DynamicGraph> train_graph_instances = graph.create_subgraph_instances(positive_event_times_train,
                                                                                       negative_event_times_train,
                                                                                       time_unit_primary);
