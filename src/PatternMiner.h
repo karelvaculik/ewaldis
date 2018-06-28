@@ -16,6 +16,7 @@ class PatternMiner
 {
 private:
     std::vector<DynamicGraph> & graph_instances;
+//    DynamicGraph * graph;
     std::vector<std::vector<int>> & positive_event_vertices;
     std::vector<timestamp_t> & positive_event_times;
     std::vector<std::vector<int>> & positive_event_edges;
@@ -37,6 +38,7 @@ private:
 
 public:
     PatternMiner(std::vector<DynamicGraph> & graph_instances,
+//    PatternMiner(DynamicGraph * graph,
                  std::vector<std::vector<int>> & positive_event_vertices,
                  std::vector<timestamp_t> & positive_event_times,
                  std::vector<std::vector<int>> & positive_event_edges,
@@ -60,6 +62,7 @@ public:
                              std::vector<std::vector<double>> &negative_populations_fitness, bool verbose = false);
     std::vector<std::vector<double>> evaluate_pattern(Pattern * pattern,
                                                       std::vector<DynamicGraph> & evaluator_graph_instances,
+//                                                      DynamicGraph * graph,
                                                       std::vector<std::vector<int>> & positive_vertex_ids_test,
                                                       std::vector<timestamp_t> & positive_starting_times_test,
                                                       std::vector<std::vector<int>> & negative_vertex_ids_test,

@@ -30,6 +30,7 @@ private:
 
 
     std::optional<PatternEdge> extract_pattern_edge(OccupiedGraph *occupied_graph, std::vector<DynamicGraph> &graph_instances,
+//    std::optional<PatternEdge> extract_pattern_edge(OccupiedGraph *occupied_graph, DynamicGraph * graph,
                                                         Suitabilities *suitabilities, int n_positive, int n_negative,
                                                         std::vector<std::vector<double>> &populations_fitness,
                                                         std::vector<std::vector<double>> &negative_populations_fitness,
@@ -65,6 +66,7 @@ private:
 
 
     std::vector<double> occupy_best_negative_edges(std::vector<DynamicGraph> &graph_instances,
+//    std::vector<double> occupy_best_negative_edges(DynamicGraph * graph,
                                                        std::vector<std::vector<std::vector<Edge *>>> &positive_population,
                                                        int n_positive, int n_negative, Suitabilities *suitabilities,
                                                        int n_subepochs,
@@ -91,6 +93,7 @@ private:
 
     std::vector<std::vector<std::vector<Edge *>>> prepare_negative_combinations(
             std::vector<DynamicGraph> &original_graph_instances,
+//            DynamicGraph * graph,
             std::vector<std::vector<std::vector<Edge *>>> &positive_population,
             Suitabilities *suitabilities,
             int n_positive, int n_negative);
@@ -178,6 +181,7 @@ public:
                             bool limit_negative_population);
 
     Pattern extract_pattern(std::vector<DynamicGraph> & graph_instances,
+//    Pattern extract_pattern(DynamicGraph * graph,
                          std::vector<std::vector<int>> & positive_event_vertices,
                          std::vector<timestamp_t> & positive_event_times,
                          std::vector<std::vector<int>> & positive_event_edges,

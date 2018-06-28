@@ -13,6 +13,7 @@ class OccupiedGraph
 {
 private:
     std::vector<DynamicGraph> & original_graph_instances;
+//    DynamicGraph * graph;
     const std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> & edge_pairs_dictionary_positive;
     // here we have (instance_id, edge_id) pairs of already selected edges:
     std::set<std::pair<int, int>> all_occupied_original_edges_ids_with_instances;
@@ -55,6 +56,7 @@ protected:
 public:
     ~OccupiedGraph();
     OccupiedGraph(std::vector <DynamicGraph> & graph_instances,
+//    OccupiedGraph(DynamicGraph * graph,
                   const std::vector <std::vector<int>> & positive_event_vertices,
                   const std::vector <std::vector<int>> & positive_event_edges,
                   const std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> & edge_pairs_dictionary_positive);

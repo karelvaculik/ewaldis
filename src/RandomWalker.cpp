@@ -179,6 +179,7 @@ RandomWalker::select_secondary_edge(DynamicGraph * graph, int current_node_id, t
 }
 
 void RandomWalker::perform_one_walk(std::vector<DynamicGraph> & graph_instances, std::vector<int> & current_nodes,
+//void RandomWalker::perform_one_walk(DynamicGraph * graph, std::vector<int> & current_nodes,
                                     std::vector<timestamp_t > & start_nodes_times, int n_positive_instances,
                                     std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> & edge_pairs_dictionary_positive,
                                     std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> & edge_pairs_dictionary_negative,
@@ -205,6 +206,7 @@ void RandomWalker::perform_one_walk(std::vector<DynamicGraph> & graph_instances,
 
 
         std::pair<void *, double> primary_edge_prob = select_primary_edge(&graph_instances[primary_occurrence_index],
+//        std::pair<void *, double> primary_edge_prob = select_primary_edge(graph,
                                                                           current_nodes[primary_occurrence_index],
                                                                           start_nodes_times[primary_occurrence_index],
                                                                           used_edge_sets[primary_occurrence_index]);
@@ -236,6 +238,7 @@ void RandomWalker::perform_one_walk(std::vector<DynamicGraph> & graph_instances,
                         start_nodes_times[instance_index] - primary_edge_timestamp_difference;
 
                 std::pair<void *, double> secondary_edge_prob = select_secondary_edge(&graph_instances[instance_index],
+//                std::pair<void *, double> secondary_edge_prob = select_secondary_edge(graph,
                                                                                       current_nodes[instance_index],
                                                                                       start_nodes_times[instance_index],
                                                                                       secondary_edge_expected_timestamp,
@@ -369,6 +372,7 @@ Suitabilities RandomWalker::prepare_scores(
 
 
 Suitabilities RandomWalker::compute_suitabilities(std::vector<DynamicGraph> & graph_instances,
+//Suitabilities RandomWalker::compute_suitabilities(DynamicGraph * graph,
                                                   std::vector<std::vector<int>> &positive_event_vertices,
                                                   std::vector<timestamp_t> &positive_event_times,
                                                   std::vector<std::vector<int>> &positive_event_edges,
@@ -388,6 +392,7 @@ Suitabilities RandomWalker::compute_suitabilities(std::vector<DynamicGraph> & gr
 
     // init the vector of sets:
     for (int l = 0; l < graph_instances.size(); ++l)
+//    for (int l = 0; l < (positive_event_times.size() + negative_event_times.size()); ++l)
     {
         already_visited_edges.push_back(std::set<int>());
     }
@@ -430,6 +435,8 @@ Suitabilities RandomWalker::compute_suitabilities(std::vector<DynamicGraph> & gr
 
         perform_one_walk(graph_instances, start_nodes, start_times, n_positive_instances, edge_pairs_dictionary_positive,
                          edge_pairs_dictionary_negative, edge_priors, already_visited_edges);
+//        perform_one_walk(graph, start_nodes, start_times, n_positive_instances, edge_pairs_dictionary_positive,
+//                         edge_pairs_dictionary_negative, edge_priors, already_visited_edges);
     }
 
     // finally, compute the suitabilities from the dictionaries

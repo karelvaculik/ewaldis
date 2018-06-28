@@ -37,6 +37,7 @@ private:
                           std::set<int> already_visited_edges);
 
     void perform_one_walk(std::vector<DynamicGraph> & graph_instances, std::vector<int> & current_nodes,
+//    void perform_one_walk(DynamicGraph * graph, std::vector<int> & current_nodes,
                           std::vector<timestamp_t > & start_nodes_times, int n_positive_instances,
                           std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> &edge_pairs_dictionary_positive,
                           std::map<std::pair<int, int>, std::map<std::pair<int, int>, double>> &edge_pairs_dictionary_negative,
@@ -61,6 +62,7 @@ public:
                            timestamp_t secondary_edge_expected_timestamp);
 
     Suitabilities compute_suitabilities(std::vector<DynamicGraph> & graph_instances,
+//    Suitabilities compute_suitabilities(DynamicGraph * graph,
                                         std::vector<std::vector<int>> &positive_event_vertices,
                                         std::vector<timestamp_t> &positive_event_times,
                                         std::vector<std::vector<int>> &positive_event_edges,

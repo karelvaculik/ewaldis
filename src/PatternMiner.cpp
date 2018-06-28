@@ -11,6 +11,7 @@
 
 
 PatternMiner::PatternMiner(std::vector<DynamicGraph> & graph_instances,
+//PatternMiner::PatternMiner(DynamicGraph * graph,
                            std::vector<std::vector<int>> & positive_event_vertices,
                            std::vector<timestamp_t> & positive_event_times,
                            std::vector<std::vector<int>> & positive_event_edges,
@@ -62,6 +63,7 @@ Pattern PatternMiner::mine_pattern(std::vector<std::vector<double>> &populations
                                               time_unit_secondary, random_walks, prob_restart, random_generator);
 
     Suitabilities suitabilities = random_walker.compute_suitabilities(graph_instances, positive_event_vertices,
+//    Suitabilities suitabilities = random_walker.compute_suitabilities(graph, positive_event_vertices,
                                                                       positive_event_times,
                                                                       positive_event_edges, negative_event_vertices,
                                                                       negative_event_times, negative_event_edges);
@@ -74,6 +76,7 @@ Pattern PatternMiner::mine_pattern(std::vector<std::vector<double>> &populations
                                                                                 use_simple_init, use_uniform_crossover,
                                                                                 limit_negative_population);
     Pattern pattern = genetic_pattern_extractor.extract_pattern(graph_instances,
+//    Pattern pattern = genetic_pattern_extractor.extract_pattern(graph,
                                                                 positive_event_vertices,
                                                                 positive_event_times,
                                                                 positive_event_edges,
@@ -89,6 +92,7 @@ Pattern PatternMiner::mine_pattern(std::vector<std::vector<double>> &populations
 
 std::vector<std::vector<double>> PatternMiner::evaluate_pattern(Pattern * pattern,
                                                                 std::vector<DynamicGraph> & evaluator_graph_instances,
+//                                                                DynamicGraph * graph,
                                                                 std::vector<std::vector<int>> & positive_vertex_ids_test,
                                                                 std::vector<timestamp_t> & positive_starting_times_test,
                                                                 std::vector<std::vector<int>> & negative_vertex_ids_test,
@@ -135,6 +139,7 @@ std::vector<std::vector<double>> PatternMiner::evaluate_pattern(Pattern * patter
 
         score = pattern_checker.check_pattern_in_instance(// &graph_instances.at(j),
                                                           &evaluator_graph_instances.at(j),
+//                                                          graph,
                                                           pattern, transposed_positive_vertex_ids_test.at(j),
                                                           positive_starting_times_test.at(j),
                                                           edge_weights);
@@ -146,6 +151,7 @@ std::vector<std::vector<double>> PatternMiner::evaluate_pattern(Pattern * patter
     {
         score = pattern_checker.check_pattern_in_instance(// &graph_instances.at(k),
                                                           &evaluator_graph_instances.at(k),
+//                                                          graph,
                                                           pattern, transposed_negative_vertex_ids_test.at(k),
                                                           negative_starting_times_test.at(k),
                                                           edge_weights);
